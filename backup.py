@@ -74,11 +74,11 @@ def run_backup(args):
             exec_pg_command("pg_dump", *cmd, **args)
 
             # Create the zip file directly in the specified path
-            name_to_store = "%s_%s.zip" % (database, time.strftime("%d_%m_%Y"))
+            name_to_store = "%s_%s.zip" % (time.strftime("%Y_%m_%d"), database)
             zip_path = os.path.join(backup_path, name_to_store)
             make_archive(zip_path.replace('.zip', ''), 'zip', dump_dir)
 
-            name_store = "%s_%s_filestore.zip" % (database, time.strftime("%d_%m_%Y"))
+            name_store = "%s_%s_filestore.zip" % (time.strftime("%Y_%m_%d"), database)
 
             base_dir = args["--filestore"] or "/opt/dados/filestore/"
 
